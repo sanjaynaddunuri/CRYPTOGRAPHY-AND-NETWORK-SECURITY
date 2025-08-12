@@ -20,17 +20,20 @@ def vigenere(text, key, enc=True):
         else: res += c
     return res
 
-name, profession, bio = "Sanjay", "Computer Science Engineer", \
-"I am a passionate developer who loves AI, cloud computing, and creating innovative solutions."
+name = input("Enter Name: ")
+prof = input("Enter Profession: ")
+bio  = input("Enter Bio: ")
+
+# Keys
+shift = int(input("Enter Caesar shift: "))
+vig_key = input("Enter Vigenere key: ")
 
 # Encrypt
-name_enc = caesar(name, 3)
-profession_enc = caesar(profession, 3)
-bio_enc = vigenere(bio, "portfolio")
+ne, pe, be = caesar(name, shift), caesar(prof, shift), vigenere(bio, vig_key)
+print("\nEncrypted:", ne, pe, be, sep="\n")
 
 # Decrypt
-print("Encrypted:", name_enc, profession_enc, bio_enc, sep="\n")
 print("\nDecrypted:",
-      caesar(name_enc, -3),
-      caesar(profession_enc, -3),
-      vigenere(bio_enc, "portfolio", enc=False), sep="\n")
+      caesar(ne, -shift),
+      caesar(pe, -shift),
+      vigenere(be, vig_key, False), sep="\n")
